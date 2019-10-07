@@ -1,14 +1,10 @@
 package me.dominikoso.ctfbot;
 
 import me.dominikoso.ctfbot.bot.AliceBot;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class CtfBotApplication {
     private static final Logger LOGGER = LogManager.getLogger(CtfBotApplication.class);
-
-    public CtfBotApplication() {
-    }
 
     public static void main(String[] args) {
         try {
@@ -17,12 +13,11 @@ public class CtfBotApplication {
                 LOGGER.info("AliceBot - Initialized");
                 bot.initModules();
                 bot.start();
-            } else {
+            }else{
                 LOGGER.error("AliceBot - Initialization Failed");
             }
-        } catch (Exception var2) {
-            LOGGER.error(var2);
+        }catch (Exception e){
+            LOGGER.error(e);
         }
-
     }
 }
