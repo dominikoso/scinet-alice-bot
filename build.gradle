@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'me.dominikoso'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'AliceBot',
+                'Implementation-Version': version,
+                'Main-Class': 'me.dominikoso.ctfbot.CtfBotApplication'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.12.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+}
